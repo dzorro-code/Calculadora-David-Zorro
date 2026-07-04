@@ -1,0 +1,88 @@
+[*]
+[*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
+[*] Mon Jun  1 13:30:15 2026
+[*]
+[dumpfile] "/home/felipe-zorro/semestre_7/digital/calculator/cores/div/div_TB.vcd"
+[dumpfile_mtime] "Mon Jun  1 11:03:57 2026"
+[dumpfile_size] 9341
+[savefile] "/home/felipe-zorro/semestre_7/digital/calculator/cores/div/div.gtkw"
+[timestart] 0
+[size] 1920 1043
+[pos] -1 -1
+*-7.336658 1052 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] div_TB.
+[treeopen] div_TB.uut.
+[sst_width] 216
+[signals_width] 257
+[sst_expanded] 1
+[sst_vpaned_height] 306
+@22
+div_TB.uut.A[15:0]
+div_TB.uut.B[15:0]
+@30
+div_TB.uut.R[15:0]
+@820
+div_TB.uut.state_machinediv0.state_name[320:1]
+@28
+div_TB.uut.done
+div_TB.uut.state_machinediv0.load
+div_TB.uut.state_machinediv0.shiftR
+div_TB.uut.state_machinediv0.load
+div_TB.uut.state_machinediv0.ok
+div_TB.uut.regA0.load1
+div_TB.uut.regA0.load
+div_TB.uut.regA0.shiftA
+@c00022
+div_TB.uut.regA0.Aout[31:0]
+@28
+(0)div_TB.uut.regA0.Aout[31:0]
+(1)div_TB.uut.regA0.Aout[31:0]
+(2)div_TB.uut.regA0.Aout[31:0]
+(3)div_TB.uut.regA0.Aout[31:0]
+(4)div_TB.uut.regA0.Aout[31:0]
+(5)div_TB.uut.regA0.Aout[31:0]
+(6)div_TB.uut.regA0.Aout[31:0]
+(7)div_TB.uut.regA0.Aout[31:0]
+(8)div_TB.uut.regA0.Aout[31:0]
+(9)div_TB.uut.regA0.Aout[31:0]
+(10)div_TB.uut.regA0.Aout[31:0]
+(11)div_TB.uut.regA0.Aout[31:0]
+(12)div_TB.uut.regA0.Aout[31:0]
+(13)div_TB.uut.regA0.Aout[31:0]
+(14)div_TB.uut.regA0.Aout[31:0]
+(15)div_TB.uut.regA0.Aout[31:0]
+(16)div_TB.uut.regA0.Aout[31:0]
+(17)div_TB.uut.regA0.Aout[31:0]
+(18)div_TB.uut.regA0.Aout[31:0]
+(19)div_TB.uut.regA0.Aout[31:0]
+(20)div_TB.uut.regA0.Aout[31:0]
+(21)div_TB.uut.regA0.Aout[31:0]
+(22)div_TB.uut.regA0.Aout[31:0]
+(23)div_TB.uut.regA0.Aout[31:0]
+(24)div_TB.uut.regA0.Aout[31:0]
+(25)div_TB.uut.regA0.Aout[31:0]
+(26)div_TB.uut.regA0.Aout[31:0]
+(27)div_TB.uut.regA0.Aout[31:0]
+(28)div_TB.uut.regA0.Aout[31:0]
+(29)div_TB.uut.regA0.Aout[31:0]
+(30)div_TB.uut.regA0.Aout[31:0]
+(31)div_TB.uut.regA0.Aout[31:0]
+@1401200
+-group_end
+@22
+div_TB.uut.regA0.A[15:0]
+@28
+div_TB.uut.regA0.clk
+@22
+div_TB.uut.regA0.inAprima[15:0]
+@28
+div_TB.uut.regA0.load
+div_TB.uut.regA0.load1
+div_TB.uut.regA0.load1
+div_TB.uut.regA0.shiftA
+@29
+div_TB.uut.comp0.Aprima[15:0]
+@22
+div_TB.uut.comp0.B[15:0]
+[pattern_trace] 1
+[pattern_trace] 0
