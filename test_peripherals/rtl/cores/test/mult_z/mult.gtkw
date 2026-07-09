@@ -1,0 +1,69 @@
+[*]
+[*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
+[*] Mon Jun  1 03:45:08 2026
+[*]
+[dumpfile] "/home/felipe-zorro/semestre_7/digital/calculator/cores/mult/mult_TB.vcd"
+[dumpfile_mtime] "Mon Jun  1 03:41:32 2026"
+[dumpfile_size] 3922
+[savefile] "/home/felipe-zorro/semestre_7/digital/calculator/cores/mult/mult.gtkw"
+[timestart] 9
+[size] 1920 1043
+[pos] -1 -1
+*-6.336658 209 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] mult_TB.
+[treeopen] mult_TB.uut.
+[sst_width] 216
+[signals_width] 166
+[sst_expanded] 1
+[sst_vpaned_height] 306
+@22
+mult_TB.uut.A[15:0]
+mult_TB.uut.B[15:0]
+@c00024
+mult_TB.uut.R[31:0]
+@28
+(0)mult_TB.uut.R[31:0]
+(1)mult_TB.uut.R[31:0]
+(2)mult_TB.uut.R[31:0]
+(3)mult_TB.uut.R[31:0]
+(4)mult_TB.uut.R[31:0]
+(5)mult_TB.uut.R[31:0]
+(6)mult_TB.uut.R[31:0]
+(7)mult_TB.uut.R[31:0]
+(8)mult_TB.uut.R[31:0]
+(9)mult_TB.uut.R[31:0]
+(10)mult_TB.uut.R[31:0]
+(11)mult_TB.uut.R[31:0]
+(12)mult_TB.uut.R[31:0]
+(13)mult_TB.uut.R[31:0]
+(14)mult_TB.uut.R[31:0]
+(15)mult_TB.uut.R[31:0]
+(16)mult_TB.uut.R[31:0]
+(17)mult_TB.uut.R[31:0]
+(18)mult_TB.uut.R[31:0]
+(19)mult_TB.uut.R[31:0]
+(20)mult_TB.uut.R[31:0]
+(21)mult_TB.uut.R[31:0]
+(22)mult_TB.uut.R[31:0]
+(23)mult_TB.uut.R[31:0]
+(24)mult_TB.uut.R[31:0]
+(25)mult_TB.uut.R[31:0]
+(26)mult_TB.uut.R[31:0]
+(27)mult_TB.uut.R[31:0]
+(28)mult_TB.uut.R[31:0]
+(29)mult_TB.uut.R[31:0]
+(30)mult_TB.uut.R[31:0]
+(31)mult_TB.uut.R[31:0]
+@1401200
+-group_end
+@25
+mult_TB.uut.regA0.Aout[31:0]
+@28
+mult_TB.uut.init
+mult_TB.uut.init
+mult_TB.uut.done
+mult_TB.uut.w_sh
+@820
+mult_TB.uut.state_machinemult0.state_name[320:1]
+[pattern_trace] 1
+[pattern_trace] 0

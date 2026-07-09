@@ -1,0 +1,80 @@
+[*]
+[*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
+[*] Thu Jun  4 03:39:10 2026
+[*]
+[dumpfile] "/home/felipe-zorro/semestre_7/digital/calculator/cores/sqrt/sqrt_TB.vcd"
+[dumpfile_mtime] "Thu Jun  4 01:59:11 2026"
+[dumpfile_size] 7398
+[savefile] "/home/felipe-zorro/semestre_7/digital/calculator/cores/sqrt/sqrt.gtkw"
+[timestart] 0
+[size] 1920 1043
+[pos] -961 -1
+*-6.000000 292 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] sqrt_TB.
+[treeopen] sqrt_TB.uut.
+[sst_width] 216
+[signals_width] 166
+[sst_expanded] 1
+[sst_vpaned_height] 306
+@28
+sqrt_TB.uut.regR0.clk
+@24
+[color] 1
+sqrt_TB.uut.A[15:0]
+@c00024
+[color] 2
+sqrt_TB.uut.R[7:0]
+@28
+[color] 2
+(0)sqrt_TB.uut.R[7:0]
+[color] 2
+(1)sqrt_TB.uut.R[7:0]
+[color] 2
+(2)sqrt_TB.uut.R[7:0]
+[color] 2
+(3)sqrt_TB.uut.R[7:0]
+[color] 2
+(4)sqrt_TB.uut.R[7:0]
+[color] 2
+(5)sqrt_TB.uut.R[7:0]
+[color] 2
+(6)sqrt_TB.uut.R[7:0]
+[color] 2
+(7)sqrt_TB.uut.R[7:0]
+@1401204
+-group_end
+@25
+[color] 2
+sqrt_TB.uut.A2[15:0]
+@28
+sqrt_TB.uut.init
+sqrt_TB.uut.done
+sqrt_TB.uut.regR0.add_0
+sqrt_TB.uut.regR0.add_1
+@22
+sqrt_TB.uut.comp10.R1[9:0]
+@820
+sqrt_TB.uut.state_machinesqrt0.state_name[320:1]
+@28
+[color] 2
+sqrt_TB.uut.comp10.m
+[color] 2
+sqrt_TB.uut.state_machinesqrt0.z
+[color] 2
+sqrt_TB.uut.state_machinesqrt0.c
+[color] 7
+sqrt_TB.uut.state_machinesqrt0.ld_A1
+[color] 7
+sqrt_TB.uut.state_machinesqrt0.ld_A2
+[color] 7
+sqrt_TB.uut.state_machinesqrt0.ld_R1
+[color] 7
+sqrt_TB.uut.state_machinesqrt0.add_0
+[color] 7
+sqrt_TB.uut.state_machinesqrt0.add_1
+[color] 7
+sqrt_TB.uut.state_machinesqrt0.sh
+@22
+sqrt_TB.uut.comp_count0.count[3:0]
+[pattern_trace] 1
+[pattern_trace] 0
