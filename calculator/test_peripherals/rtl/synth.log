@@ -3446,13 +3446,13 @@ ABC: <abc-temp-dir>/input : i/o =    760/   1015  and =    4976  lev =   20 (2.2
 ABC: + &if -W 300 -v 
 ABC: K = 7. Memory (bytes): Truth =    0. Cut =   60. Obj =  140. Set =  636. CutMin = no
 ABC: Node =    4976.  Ch =   713.  Total mem =    1.30 MB. Peak cut mem =    0.09 MB.
-ABC: P:  Del = 4945.00.  Ar =    4136.0.  Edge =     5501.  Cut =    56240.  T =     0.01 sec
-ABC: P:  Del = 4938.00.  Ar =    3836.0.  Edge =     5331.  Cut =    54508.  T =     0.01 sec
-ABC: P:  Del = 4938.00.  Ar =    2047.0.  Edge =     4557.  Cut =   105139.  T =     0.01 sec
-ABC: F:  Del = 4938.00.  Ar =    1642.0.  Edge =     4143.  Cut =    92066.  T =     0.01 sec
-ABC: A:  Del = 4938.00.  Ar =    1588.0.  Edge =     3895.  Cut =    88930.  T =     0.02 sec
-ABC: A:  Del = 4938.00.  Ar =    1578.0.  Edge =     3888.  Cut =    89750.  T =     0.02 sec
-ABC: Total time =     0.08 sec
+ABC: P:  Del = 4945.00.  Ar =    4136.0.  Edge =     5501.  Cut =    56240.  T =     0.02 sec
+ABC: P:  Del = 4938.00.  Ar =    3836.0.  Edge =     5331.  Cut =    54508.  T =     0.02 sec
+ABC: P:  Del = 4938.00.  Ar =    2047.0.  Edge =     4557.  Cut =   105139.  T =     0.03 sec
+ABC: F:  Del = 4938.00.  Ar =    1642.0.  Edge =     4143.  Cut =    92066.  T =     0.03 sec
+ABC: A:  Del = 4938.00.  Ar =    1588.0.  Edge =     3895.  Cut =    88930.  T =     0.04 sec
+ABC: A:  Del = 4938.00.  Ar =    1578.0.  Edge =     3888.  Cut =    89750.  T =     0.04 sec
+ABC: Total time =     0.17 sec
 ABC: + &write -n <abc-temp-dir>/output.aig 
 ABC: + &mfs 
 ABC: + &ps -l 
@@ -3461,7 +3461,7 @@ ABC: Mapping (K=7)  :  lut =   1068  edge =    3844  lev =    9 (1.14)  levB =  
 ABC: LUT = 1068 : 2=182 17.0 %  3=354 33.1 %  4=321 30.1 %  5=147 13.8 %  6=49 4.6 %  7=15 1.4 %  Ave = 3.60
 ABC: + &write -n <abc-temp-dir>/output.aig 
 ABC: + time 
-ABC: elapse: 0.79 seconds, total: 0.79 seconds
+ABC: elapse: 1.69 seconds, total: 1.69 seconds
 
 29.43.18.6. Executing AIGER frontend.
 Removed 5816 unused cells and 9814 unused wires.
@@ -4223,6 +4223,6 @@ Found and reported 0 problems.
 30. Executing JSON backend.
 
 Warnings: 65 unique messages, 65 total
-End of script. Logfile hash: a2e7d55880, CPU: user 2.94s system 0.07s, MEM: 122.70 MB peak
+End of script. Logfile hash: 9f9b1312d7, CPU: user 6.15s system 0.11s, MEM: 122.36 MB peak
 Yosys 0.38+92 (git sha1 84116c9a3, x86_64-conda-linux-gnu-cc 11.2.0 -fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -fdebug-prefix-map=/root/conda-eda/conda-eda/workdir/conda-env/conda-bld/yosys_1708682804602/work=/usr/local/src/conda/yosys-0.38_93_g84116c9a3 -fdebug-prefix-map=/home/felipe-zorro/miniconda3/envs/digital=/usr/local/src/conda-prefix -fPIC -Os -fno-merge-constants)
-Time spent: 21% 1x abc9_exe (0 sec), 18% 11x techmap (0 sec), ...
+Time spent: 21% 1x abc9_exe (1 sec), 18% 11x techmap (1 sec), ...
