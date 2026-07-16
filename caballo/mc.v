@@ -191,12 +191,33 @@ end
 reg [8*40:1] state_name;
 always @(*) begin
     case(state)
+
         START    : state_name = "START";
         CHECK0    : state_name = "CHECK0";
         CHECK1    : state_name = "CHECK1";
         SHIFT    : state_name = "SHIFT";
         ACUMU     : state_name = "ACUMU";
         END      : state_name = "END";
+
+        START                :state_name = "START";
+        CHECK_ENTER          :state_name = "CHECK_ENTER";
+        MOVE_C_F             :state_name = "MOVE_C_F";
+        LOAD_M_TABLERO       :state_name = "LOAD_M_TABLERO";
+        PEINTF_M_TABLERO     :state_name = "PEINTF_M_TABLERO";
+        CHECK_JU_VALIDA      :state_name = "CHECK_JU_VALIDA";
+        ADD_JU_VALIDA        :state_name = "ADD_JU_VALIDA";
+        LOAD_TABLERO         :state_name = "LOAD_TABLERO";
+        PRINT_TABLERO        :state_name = "PRINT_TABLERO";
+        CALCU_POS_MOV        :state_name = "CALCU_POS_MOV";
+        Q_M                  :state_name = "Q_M";
+        LOAD_TEMP            :state_name = "LOAD_TEMP";
+        PRINTF_TABLERO_TEMP  :state_name = "PRINTF_TABLERO_TEMP";
+        CAS_LLENAS           :state_name = "CAS_LLENAS";
+        LOAD_T_WINNER        :state_name = "LOAD_T_WINNER";
+        LOAD_T_LOS           :state_name = "LOAD_T_LOS";
+        CHECK_RST_W           :state_name = "CHECK_RST_W";
+        CHECK_RST_L          :state_name = "CHECK_RST_L";
+
     endcase
 end
 `endif
