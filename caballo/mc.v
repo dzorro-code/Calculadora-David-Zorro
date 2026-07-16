@@ -191,14 +191,6 @@ end
 reg [8*40:1] state_name;
 always @(*) begin
     case(state)
-
-        START    : state_name = "START";
-        CHECK0    : state_name = "CHECK0";
-        CHECK1    : state_name = "CHECK1";
-        SHIFT    : state_name = "SHIFT";
-        ACUMU     : state_name = "ACUMU";
-        END      : state_name = "END";
-
         START                :state_name = "START";
         CHECK_ENTER          :state_name = "CHECK_ENTER";
         MOVE_C_F             :state_name = "MOVE_C_F";
@@ -215,7 +207,7 @@ always @(*) begin
         CAS_LLENAS           :state_name = "CAS_LLENAS";
         LOAD_T_WINNER        :state_name = "LOAD_T_WINNER";
         LOAD_T_LOS           :state_name = "LOAD_T_LOS";
-        CHECK_RST_W           :state_name = "CHECK_RST_W";
+        CHECK_RST_W          :state_name = "CHECK_RST_W";
         CHECK_RST_L          :state_name = "CHECK_RST_L";
 
     endcase
