@@ -1,31 +1,69 @@
 TARGET = caballo
 TOP = caballo
 
+DEVICE = 25k
+PACKAGE = CABGA381
+
+LPF = caballo.lpf
+
 OBJS = caballo.v es_valido.v mc.v pos_mov.v reg_jugadas.v reg_tablero.v regc.v regf.v
-PER_OBJS = perip_caballo.v $(OBJS)
 
 BUILD_DIR = build
 
-all: sim
+all: bit
+
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+#################################################
+# Simulación
+#################################################
 
 sim:
 	rm -f a.out *.vcd
-	iverilog -DBENCH -DSIM -DPASSTHROUGH_PLL -DBOARD_FREQ=27 -DCPU_FREQ=27  $(TARGET)_TB.v $(OBJS)
+	iverilog -DBENCH -DSIM $(TARGET)_TB.v $(OBJS)
 	vvp a.out
 	gtkwave $(TARGET)_TB.vcd
 
-sim_per:
-	rm -f a.out *.vcd
-	iverilog -DBENCH -DSIM -DPASSTHROUGH_PLL -DBOARD_FREQ=27 -DCPU_FREQ=27  perip_$(TARGET)_TB.v $(PER_OBJS)
-	vvp a.out
-	gtkwave perip_$(TARGET)_TB.vcd
+#################################################
+# Síntesis
+#################################################
 
+$(BUILD_DIR)/$(TARGET).json: $(OBJS) | $(BUILD_DIR)
+	yosys -p "synth_ecp5 -top $(TOP) -json $@" $(OBJS)
 
-svg: $(OBJS)
-	yosys -p "prep -top ${TARGET}; write_json ${TARGET}.json" ${OBJS}
-	netlistsvg ${TARGET}.json -o ${TARGET}.svg  #--skin default.svg
-	yosys -p "prep -top ${TARGET} -flatten; write_json ${TARGET}_flat.json" ${OBJS}
-	netlistsvg ${TARGET}_flat.json -o ${TARGET}_flat.svg  #--skin default.svg
+#################################################
+# Place & Route
+#################################################
+
+$(BUILD_DIR)/$(TARGET).config: $(BUILD_DIR)/$(TARGET).json $(LPF)
+	nextpnr-ecp5 \
+		--$(DEVICE) \
+		--package $(PACKAGE) \
+		--lpf $(LPF) \
+		--json $< \
+		--textcfg $@
+
+#################################################
+# Bitstream
+#################################################
+
+$(BUILD_DIR)/$(TARGET).bit: $(BUILD_DIR)/$(TARGET).config
+	ecppack $< $@
+
+bit: $(BUILD_DIR)/$(TARGET).bit
+
+#################################################
+# Programar FPGA
+#################################################
+
+prog: $(BUILD_DIR)/$(TARGET).bit
+	openFPGALoader $<
+
+#################################################
+# Limpiar
+#################################################
 
 clean:
-	rm -rf *.out *.vcd *.svg *.json
+	rm -rf build
+	rm -f *.vcd *.out
