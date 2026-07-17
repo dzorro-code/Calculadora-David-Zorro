@@ -1,12 +1,25 @@
-# El Recorrido del Caballo — Juego en FPGA con matriz WS2812
 
-Implementación en Verilog del clásico problema del **recorrido del caballo**
-(*Knight's Tour*): mover un caballo de ajedrez por un tablero de 8×8
+# "Caballo de Troya" en FPGA con matriz led WS2812
+
+Proyecto realizado por: 
+
+Juan Sebastian Rincon Aguilera C.C. 1023372486
+
+David Felipe Zorro Pulido C.C. 1014978946
+
+Oscar Miguel Murillo Loreo C.C. 1010166751
+
+
+Video del proyecto funcionando: https://www.youtube.com/watch?v=_2d1Fb-kiik
+
+
+<img width="3888" height="6101" alt="EL FOKIN CABALLO" src="https://github.com/user-attachments/assets/a52ee71f-349a-4ea1-9cae-aa4cddeb00ab" />
+El objetivo de este proyecto es implementar el juego del "Caballo de Euler" el cual consiste en mover un caballo de ajedrez por un tablero de 8×8
 intentando pisar las 64 casillas sin repetir ninguna. El juego corre
 completamente en hardware sobre una FPGA Lattice ECP5 (placa Colorlight
-5A-75E v8.2) y se visualiza en una matriz de 16×16 LEDs WS2812.
+5A-75E v8.2), se visualiza en una matriz de 16×16 LEDs WS2812 y se controlan los movimientos con 5 botones (arriba, abajo, izquierda, derecha y enter.)
 
-<!-- ![Foto del proyecto funcionando](docs/foto_proyecto.jpg) -->
+<img width="600" height="800" alt="WhatsApp Image 2026-07-16 at 20 26 25" src="https://github.com/user-attachments/assets/52646d8d-1594-4424-8955-83c083e87d5c" />
 
 ## Reglas del juego
 
@@ -21,8 +34,9 @@ alcanzable desde la posición actual.
 En pantalla: el cursor se ve **blanco**, el caballo **azul**, las
 casillas ya pisadas **rojas**, las jugadas posibles **verdes**, y el
 fondo es un patrón de ajedrez tenue. Al ganar o perder se muestra una
-pantalla final completa cargada desde memoria (`display_win.hex` /
-`display_lose.hex`).
+pantalla final(`display_win.hex` /
+`display_lose.hex`).<img width="3692" height="1980" alt="image" src="https://github.com/user-attachments/assets/b451c873-95b1-4589-95e9-8130abb6a883" />
+
 
 ## Arquitectura general
 
@@ -47,19 +61,19 @@ de almacenarse.
 
 ## Módulos
 
-| Módulo | Bloque | Función |
-|---|---|---|
-| `top.v` | — | Conecta cerebro y pantalla; genera el pulso de refresco (~50 Hz) |
-| `cursor.v` | Cerebro | Mueve el puntero con los botones y genera el pulso *enter* |
-| `detector_flanco.v` | Cerebro | Convierte el nivel de un botón en un pulso de 1 ciclo |
-| `pos_mov.v` | Cerebro | Calcula el mapa de 64 bits con los movimientos en L posibles |
-| `validar_jugada.v` | Cerebro | Verifica que la casilla del cursor sea jugada legal |
-| `reg_jugadas.v` | Cerebro | Memoria del tablero (casillas pisadas) y contador de avance |
-| `reg_caballo.v` | Cerebro | Posición actual del caballo; se actualiza al confirmar jugada |
-| `mc.v` | Cerebro | Máquina de estados global: calcular → esperar → validar → aplicar → win/lose |
-| `tablero_temp.v` | Traductor | Decide qué hay en cada casilla (prioridad: puntero > caballo > ocupada > posible > vacío) |
-| `traductor.v` | Traductor | Convierte dirección física del LED (16×16, zigzag) a casilla (8×8) y asigna el color |
-| `ws2812_array.v` | Pantalla | Barrido de los 256 LEDs (máquina SEND_N_LEDS) |
+| Módulo | Función |
+|---|---|
+| `top.v` |  Conecta juego y pantalla; genera el pulso de refresco (~50 Hz) |
+| `cursor.v` | Mueve el puntero con los botones y genera el pulso *enter* |
+| `detector_flanco.v` Convierte el nivel de un botón en un pulso de 1 ciclo |
+| `pos_mov.v` | Calcula el mapa de 64 bits con los movimientos en L posibles |
+| `validar_jugada.v` | Verifica que la casilla del cursor sea jugada legal |
+| `reg_jugadas.v` | Memoria del tablero (casillas pisadas) y contador de avance |
+| `reg_caballo.v` | Posición actual del caballo; se actualiza al confirmar jugada |
+| `mc.v` | Máquina de estados global: calcular → esperar → validar → aplicar → win/lose |
+| `tablero_temp.v` |  Decide qué hay en cada casilla (prioridad: puntero > caballo > ocupada > posible > vacío) |
+| `traductor.v` | Convierte dirección física del LED (16×16, zigzag) a casilla (8×8) y asigna el color |
+| `ws2812_array.v` |  Barrido de los 256 LEDs (máquina SEND_N_LEDS) |
 | `ws2812_led.v` + submódulos | Pantalla | Envío en serie de un color de 24 bits |
 | `ws2812.v` + submódulos | Pantalla | Generación de un bit (temporización T0H/T1H/PER/RES) |
 
@@ -80,31 +94,27 @@ alto**, con estos tiempos (a 25 MHz):
 
 Dos convenciones importantes del proyecto:
 
-- **El color va en orden GRB**, no RGB: `24'hFF0000` es verde puro.
 - **La matriz está cableada en zigzag**: las filas impares van de
   derecha a izquierda. El traductor lo deshace invirtiendo los 4 bits
   bajos de la dirección en esas filas.
 - Cada casilla del tablero 8×8 se dibuja como un **super-píxel de 2×2
   LEDs** sobre la matriz física de 16×16.
-- El tablero lógico se representa como un vector plano de 64 bits con
-  la convención `bit = fila*8 + columna`, igual en todos los módulos.
 
 ## Conexiones
 
-| Señal | Pin FPGA | Conector | Nota |
-|---|---|---|---|
-| `clk` | P6 | — | Oscilador de 25 MHz de la placa |
-| `led_out` | F3 | J2 | Dato hacia la matriz WS2812 |
-| `reset` | R7 | — | Botón integrado de la placa (activo en bajo) |
-| `btn_up` | C4 | J1 | Botón a GND, pull-up interno |
-| `btn_down` | D4 | J1 | Botón a GND, pull-up interno |
-| `btn_left` | D3 | J1 | Botón a GND, pull-up interno |
-| `btn_right` | E3 | J1 | Botón a GND, pull-up interno |
-| `btn_enter` | E4 | J1 | Botón a GND, pull-up interno |
+| Señal | Pin FPGA | Nota |
+|---|---|---|
+| `clk` | P6 | Oscilador de 25 MHz de la placa |
+| `led_out` | F3 |  Dato hacia la matriz WS2812 |
+| `reset` | R7 | Botón integrado de la placa (activo en bajo) |
+| `btn_up` | C4 | Botón a GND, pull-up interno |
+| `btn_down` | D4 |  Botón a GND, pull-up interno |
+| `btn_left` | D3 | Botón a GND, pull-up interno |
+| `btn_right` | E3 | Botón a GND, pull-up interno |
+| `btn_enter` | E4 | Botón a GND, pull-up interno |
 
 La matriz se alimenta con 5 V externos (no desde la FPGA) compartiendo
-GND con la placa. Los colores del diseño usan brillos bajos a propósito:
-256 LEDs a máxima intensidad consumen varios amperios.
+GND con la placa. Los colores del diseño usan brillos bajos para evitar consumos altos de corriente.
 
 ## Compilación y carga
 
@@ -167,7 +177,8 @@ Qué se debe observar:
 - En (2,2), `ju_valida` está en 0 y el enter **no produce ningún
   cambio**: el estado se queda en ESPERA.
 
-<!-- ![Forma de onda de la partida](docs/onda_juego.png) -->
+<img width="992" height="464" alt="image" src="https://github.com/user-attachments/assets/7821ae2e-c4c6-402b-9a24-54e4b5be7fdc" />
+
 
 ### 2. Protocolo WS2812 (`tb_ws2812.v`)
 
@@ -185,7 +196,8 @@ angostos **0.4 µs** (bit 0), cada bit ocupa **1.24 µs**, y al final
 `DONE` sube a 1. Estos tiempos corresponden exactamente a los
 parámetros T1H, T0H y PER de la tabla anterior.
 
-<!-- ![Forma de onda del protocolo](docs/onda_ws2812.png) -->
+<img width="999" height="406" alt="image" src="https://github.com/user-attachments/assets/ea8e3da4-9a0c-4ed1-ab9f-56699e8d84ce" />
+
 
 ## Estructura del repositorio
 
